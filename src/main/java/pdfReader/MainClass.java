@@ -2,6 +2,7 @@ package pdfReader;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -15,8 +16,12 @@ public class MainClass {
 		PDFTextStripper pdfStripper = new PDFTextStripper();
 		String text = pdfStripper.getText(document);
 		document.close();
+
+        PrintWriter writer = new PrintWriter("sayings.txt", "UTF-8");
+        writer.println(text);
+        writer.close();
 		
-		System.out.println(text);
+		// System.out.println(text);
 	}
 }
 
