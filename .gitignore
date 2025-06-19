@@ -1,6 +1,2 @@
-/target/
-/.settings
-.classpath
-.project
+__pycache__/
 Dictionary_of_Proverbs.pdf
-pom.xml
