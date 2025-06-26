@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>SelectMonarchs</title>
+  </head>
+  <body>
+    <h1>{{ bet.bet_text }}</h1>
+
+    <ul>
+    {% for choice in bet.choice_set.all %}
+      <li>{{ choice.choice_text }} -- {{ choice.amount }} bet{{ choice.amount|pluralize }}</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'bookies:detail' bet.id %}">Keep betting?</a>
+  </body>
+  </html>
