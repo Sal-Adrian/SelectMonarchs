@@ -1,24 +1,28 @@
 from django.db.models import F
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
 
 from .models import Choice, Bet
 
-def index(request):
-    latest_bet_list = Bet.objects.order_by("-pub_date")[:5]
-    context = {"latest_bet_list": latest_bet_list}
-    return render(request, "bookies/index.html", context)
+class IndexView(generic.ListView):
+    template_name = "bookies/index.html"
+    context_object_name = "latest_bet_list"
+
+    def get_queryset(self):
+        """Return the last five published bets."""
+        return Bet.objects.order_by("-pub_date")[:5]
 
 
-def detail(request, bet_id):
-    bet = get_object_or_404(Bet, pk=bet_id)
-    return render(request, "bookies/detail.html", {"bet": bet})
+class DetailView(generic.DetailView):
+    model = Bet
+    template_name = "bookies/detail.html"
 
 
-def results(request, bet_id):
-    bet = get_object_or_404(Bet, pk=bet_id)
-    return render(request, "bookies/results.html", {"bet": bet})
+class ResultsView(generic.DetailView):
+    model = Bet
+    template_name = "bookies/results.html"
 
 
 def bet(request, bet_id):
