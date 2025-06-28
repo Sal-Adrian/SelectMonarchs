@@ -10,7 +10,13 @@
     {% if latest_bet_list %}
       <ul>
       {% for bet in latest_bet_list %}
-        <li><a href="{% url 'bookies:detail' bet.id %}">{{ bet.bet_text }}</a></li>
+        <li><a href="{% url 'bookies:detail' bet.id %}">{{ bet.bet_text }}</a>
+          <ul>
+            {% for choice in bet.choice_set.all %}
+              <li id="choice{{ forloop.counter }}">{{ choice.choice_text }} {{ choice.amount }}</li>
+            {% endfor %}
+          </ul>
+        </li>
       {% endfor %}
       </ul>
     {% else %}
