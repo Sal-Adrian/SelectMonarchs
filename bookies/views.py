@@ -41,21 +41,34 @@ class ResultsView(generic.DetailView):
         return Bet.objects.filter(pub_date__lte=timezone.now())
 
 
+def errorMessage(request, bet, message):
+    return render(
+            request,
+            "bookies/detail.html",
+            {
+                "bet": bet,
+                "error_message": message,
+            },
+        )
+
 def bet(request, bet_id):
     bet = get_object_or_404(Bet, pk=bet_id)
     try:
         selected_choice = bet.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
-        return render(
-            request,
-            "bookies/detail.html",
-            {
-                "bet": bet,
-                "error_message": "You didn't select a choice.",
-            },
-        )
+        return errorMessage(request, bet, "You didn't select a choice.")
     else:
-        selected_choice.amount = F("amount") + 1
+        selected_amount = request.POST["amount"]
+        try:
+            int(selected_amount)
+        except ValueError:
+            return errorMessage(request, bet, "You didn't enter a vaild number.")
+        
+        amount = int(selected_amount)
+        if amount <= 0:
+            return errorMessage(request, bet, "You didn't put an amount greater than 0.")
+    
+        selected_choice.amount = F("amount") + amount
         selected_choice.save()
 
         return HttpResponseRedirect(reverse("bookies:results", args=(bet.id,)))

@@ -15,6 +15,8 @@
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}  {{ choice.amount }}</label>
         <br>
       {% endfor %}
+      <label for="amount">Bet Amount:</label>
+      <input type="text" name="amount" id="amount">
     </fieldset>
     <input type="submit" value="Bet">
     </form>
