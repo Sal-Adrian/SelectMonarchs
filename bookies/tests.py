@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import Bet
+from .models import Bet, Choice
 
 
 def create_bet(bet_text, days):
@@ -15,6 +15,14 @@ def create_bet(bet_text, days):
     """
     time = timezone.now() + datetime.timedelta(days=days)
     return Bet.objects.create(bet_text=bet_text, pub_date=time)
+
+def create_choice(bet_id, choice_text, amount):
+    """
+    Make a bet on an existing offer (bet_id) and published the
+    amount that was bet.
+    """
+    bet = Bet.objects.filter(id=bet_id)
+    return Choice.objects.create(bet=bet[0], choice_text=choice_text, amount=amount)
 
 
 class BetModelTests(TestCase):
@@ -104,6 +112,22 @@ class BetIndexViewTests(TestCase):
             [bet2, bet1],
         )
 
+    def test_placed_bets(self):
+        """
+        The index view of a bet displays the existing bets and 
+        the amounts placed on it.
+        """
+        bet = create_bet(bet_text="New Bet.", days=0)
+        choice1 = create_choice(bet_id=bet.id, choice_text="Yes", amount=104)
+        choice2 = create_choice(bet_id=bet.id, choice_text="No", amount=73)
+
+        response = self.client.get(reverse("bookies:index"))
+        
+        self.assertContains(response, choice1.choice_text)
+        self.assertContains(response, choice1.amount)
+        self.assertContains(response, choice2.choice_text)
+        self.assertContains(response, choice2.amount)
+
 
 class BetDetailViewTests(TestCase):
     def test_future_bet(self):
@@ -119,12 +143,21 @@ class BetDetailViewTests(TestCase):
     def test_past_bet(self):
         """
         The detail view of a bet with a pub_date in the past
-        displays the bet's text.
+        displays the bet's text, the bets made, and the amounts
+        placed on it.
         """
         past_bet = create_bet(bet_text="Past bet.", days=-5)
+        choice1 = create_choice(bet_id=past_bet.id, choice_text="Yes", amount=104)
+        choice2 = create_choice(bet_id=past_bet.id, choice_text="No", amount=73)
+
         url = reverse("bookies:detail", args=(past_bet.id,))
         response = self.client.get(url)
+
         self.assertContains(response, past_bet.bet_text)
+        self.assertContains(response, choice1.choice_text)
+        self.assertContains(response, choice1.amount)
+        self.assertContains(response, choice2.choice_text)
+        self.assertContains(response, choice2.amount)
 
 
 class BetResultsViewTests(TestCase):
