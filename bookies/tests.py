@@ -1,5 +1,6 @@
 import datetime
 
+from django.shortcuts import get_object_or_404
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -21,8 +22,8 @@ def create_choice(bet_id, choice_text, amount):
     Make a bet on an existing offer (bet_id) and published the
     amount that was bet.
     """
-    bet = Bet.objects.filter(id=bet_id)
-    return Choice.objects.create(bet=bet[0], choice_text=choice_text, amount=amount)
+    bet = get_object_or_404(Bet, pk=bet_id)
+    return Choice.objects.create(bet=bet, choice_text=choice_text, amount=amount)
 
 
 class BetModelTests(TestCase):
@@ -122,7 +123,7 @@ class BetIndexViewTests(TestCase):
         choice2 = create_choice(bet_id=bet.id, choice_text="No", amount=73)
 
         response = self.client.get(reverse("bookies:index"))
-        
+
         self.assertContains(response, choice1.choice_text)
         self.assertContains(response, choice1.amount)
         self.assertContains(response, choice2.choice_text)
