@@ -8,10 +8,10 @@ class ChoiceInline(admin.TabularInline):
 
 
 class BetAdmin(admin.ModelAdmin):
-    list_display = ["bet_text", "pub_date", "was_published_recently"]
+    list_display = ["bet_text", "win_probability", "was_published_recently"]
     list_filter = ["pub_date"]
     fieldsets = [
-        (None, {"fields": ["bet_text"]}),
+        (None, {"fields": ["bet_text", "win_probability"]}),
         ("Date information", {"fields": ["pub_date"], "classes": ["collapse"]}),
     ]
     inlines = [ChoiceInline]
