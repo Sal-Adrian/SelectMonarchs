@@ -1,11 +1,21 @@
+from django.contrib.auth.models import User
 from django.db.models import F
 from django.http import HttpResponseRedirect
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
 from .models import Choice, Bet
+from .serializers import UserSerializer
+
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
 
 class IndexView(generic.ListView):
     template_name = "bookies/index.html"
