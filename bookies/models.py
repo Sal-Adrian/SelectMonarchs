@@ -26,6 +26,7 @@ class Choice(models.Model):
     bet = models.ForeignKey(Bet, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     amount = models.DecimalField(max_digits=11, decimal_places=2, default=0)
+    win_condition = models.BooleanField(default=False)
 
     def __str__(self):
         return self.choice_text

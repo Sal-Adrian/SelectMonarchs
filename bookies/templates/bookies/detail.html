@@ -9,6 +9,7 @@
     {% csrf_token %}
     <fieldset>
       <legend><h1>{{ bet.bet_text }}</h1></legend>
+      <h3>Win Probablity: {{ bet.win_probability }}</h3>
       {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
       {% for choice in bet.choice_set.all %}
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">

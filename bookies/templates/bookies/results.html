@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>{{ bet.bet_text }}</h1>
-
+    <h3>Win Probablity: {{ bet.win_probability }}</h3>
     <ul>
     {% for choice in bet.choice_set.all %}
       <li>{{ choice.choice_text }} -- {{ choice.amount }} bet{{ choice.amount|pluralize }}</li>
