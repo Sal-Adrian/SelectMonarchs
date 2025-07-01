@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 function Bet({ bet }) {
     return (
         <div key={bet.id}>
-            <li><a href={`/bookies/${bet.id}`}>{bet.bet_text}</a></li>
+            <li><Link to={`/${bet.id}`}>{bet.bet_text}</Link></li>
             <ul>
                 {bet.choices.map((choice) => (
                     <li key={choice.id}>{choice.choice_text} ==
