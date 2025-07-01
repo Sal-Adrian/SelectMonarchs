@@ -28,6 +28,12 @@ class BetListCreate(generics.ListCreateAPIView):
         return Bet.objects.all()
 
 
+class BetRetrieveView(generics.RetrieveAPIView):
+    queryset = Bet.objects.all()
+    serializer_class = BetSerializer
+    permission_classes = [IsAuthenticated]
+
+
 class IndexView(generic.ListView):
     template_name = "bookies/index.html"
     context_object_name = "latest_bet_list"
