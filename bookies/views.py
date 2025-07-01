@@ -9,12 +9,23 @@ from django.utils import timezone
 from django.views import generic
 
 from .models import Choice, Bet
-from .serializers import UserSerializer
+from .serializers import UserSerializer, BetSerializer, ChoiceSerializer
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+
+class BetListCreate(generics.ListCreateAPIView):
+    serializer_class = BetSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Return all bets.
+        """
+        return Bet.objects.all()
 
 
 class IndexView(generic.ListView):

@@ -12,15 +12,17 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
-
-class BetSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bet
-        fields = ['id', 'bet_text', 'pub_date', 'win_probability']
-        extra_kwargs = {'pub_date': {'read_only': True}}
-
+        
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choice
         fields = ['id', 'choice_text', 'amount', 'win_condition']
         extra_kwargs = {'win_condition': {'read_only': True}}
+
+class BetSerializer(serializers.ModelSerializer):
+    choices = ChoiceSerializer(many=True, source='choice_set', read_only=True)
+    
+    class Meta:
+        model = Bet
+        fields = ['id', 'bet_text', 'pub_date', 'win_probability', 'choices']
+        extra_kwargs = {'pub_date': {'read_only': True}}
