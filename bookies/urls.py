@@ -8,4 +8,5 @@ urlpatterns = [
     path("<int:pk>/", views.BetRetrieveView.as_view(), name="bet-detail"),
     path("<int:pk>/results/", views.ResultsView.as_view(), name="results"),
     path("<int:bet_id>/bet/", views.bet, name="bet"),
+    path("profile/<str:pk>/", views.ProfileView.as_view(), name="profile"),
 ]

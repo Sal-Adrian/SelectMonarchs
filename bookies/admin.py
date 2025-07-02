@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Bet
+from .models import Choice, Bet, Profile
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -17,4 +17,9 @@ class BetAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
     search_fields = ["bet_text"]
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "balance", "id"]
+    search_fields = ["user__username"]
+
 admin.site.register(Bet, BetAdmin)
+admin.site.register(Profile, ProfileAdmin)

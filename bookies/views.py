@@ -8,8 +8,8 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 
-from .models import Choice, Bet
-from .serializers import UserSerializer, BetSerializer, ChoiceSerializer
+from .models import Choice, Bet, Profile
+from .serializers import UserSerializer, BetSerializer, ChoiceSerializer, ProfileSerializer
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -32,6 +32,15 @@ class BetRetrieveView(generics.RetrieveAPIView):
     queryset = Bet.objects.all()
     serializer_class = BetSerializer
     permission_classes = [IsAuthenticated]
+
+
+class ProfileView(generics.RetrieveAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        pk = self.kwargs.get("pk")
+        return Profile.objects.get(user__username=pk)
 
 
 class IndexView(generic.ListView):
