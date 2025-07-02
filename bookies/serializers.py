@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Bet, Choice
+from .models import Bet, Choice, Profile
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +26,8 @@ class BetSerializer(serializers.ModelSerializer):
         model = Bet
         fields = ['id', 'bet_text', 'pub_date', 'win_probability', 'choices']
         extra_kwargs = {'pub_date': {'read_only': True}}
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'user', 'balance']

@@ -4,6 +4,14 @@ from django.contrib import admin
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    balance = models.DecimalField(max_digits=11, decimal_places=2, default=1000)
+
+    def __str__(self):
+        return self.user.username
 
 class Bet(models.Model):
     bet_text = models.CharField(max_length=200)
