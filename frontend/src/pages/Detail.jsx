@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import BetDetail from '../components/BetDetail';
 import { useState, useEffect } from 'react';
 import api from '../api';
+import Navbar from '../components/Navbar';
 
 function Detail() {
     const {bet_id} = useParams();
@@ -12,7 +13,6 @@ function Detail() {
             await api.get(`/bookies/${bet_id}/`)
             .then((res) => res.data)
             .then((data) => {
-                console.log(data);
                 setBet(data);
             })
             .catch((err) => alert(err));;
@@ -21,6 +21,7 @@ function Detail() {
 
     return (
         <div>
+            <Navbar />
             {bet && <BetDetail bet={bet} />}
         </div>
     )
