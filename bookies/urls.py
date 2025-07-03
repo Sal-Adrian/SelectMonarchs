@@ -9,4 +9,5 @@ urlpatterns = [
     path("<int:pk>/results/", views.ResultsView.as_view(), name="results"),
     path("<int:bet_id>/bet/", views.bet, name="bet"),
     path("profile/<str:pk>/", views.ProfileView.as_view(), name="profile"),
+    path("balance/<str:pk>/", views.BalanceUpdate.as_view(), name="balance-update"),
 ]

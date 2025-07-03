@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.db.models import F
 from django.http import HttpResponseRedirect
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
@@ -41,6 +42,35 @@ class ProfileView(generics.RetrieveAPIView):
     def get_object(self):
         pk = self.kwargs.get("pk")
         return Profile.objects.get(user__username=pk)
+
+
+class BalanceUpdate(generics.UpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        # instance = self.get_object()
+        # print(instance.user.username)
+
+        pk = self.kwargs.get("pk")
+        profile = Profile.objects.get(user__username=pk)
+        # profile.balance = request.data.get("balance", 0)
+        print(request.data)
+
+        serializer = self.get_serializer(profile, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "failed", "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    # def update(self, request, *args, **kwargs):
+    #     pk = self.kwargs.get("pk")
+    #     profile = Profile.objects.get(user__username=pk)
+    #     profile.balance = request.data.get("balance", 0)
+    #     profile.save()
+    #     return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
 
 
 class IndexView(generic.ListView):

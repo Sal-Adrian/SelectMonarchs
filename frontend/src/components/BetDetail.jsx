@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import api from '../api';
 
 function BetDetail({ bet }) {
-    const [user, setUser] = useState(null);
     const [balance, setBalance] = useState(null);
     const [amount, setAmount] = useState('');
     const [choice, setChoice] = useState('');
@@ -13,6 +12,8 @@ function BetDetail({ bet }) {
     const [winTotal, setWinTotal] = useState(0);
     const [winsCount, setWinsCount] = useState(0);
     const [lossesCount, setLossesCount] = useState(0);
+    const updatingBalance = useRef(false);
+    const currentBalance = useRef(0)
 
     const username = localStorage.getItem("username");
 
@@ -21,7 +22,6 @@ function BetDetail({ bet }) {
             await api.get(`/bookies/profile/${username}/`)
             .then((res) => res.data)
             .then((data) => {
-                setUser(data);
                 setBalance(Number(data.balance));
             })
             .catch((err) => alert(err));
@@ -48,9 +48,21 @@ function BetDetail({ bet }) {
         
         setWinner(win);
         setWinAmount(profit);
-        setBalance(Number((balance + profit).toFixed(2)));
+        currentBalance.current = Number((balance + profit).toFixed(2));
+        setBalance(currentBalance.current);
         setWinTotal((Number(winTotal) + profit).toFixed(2));
         win ? setWinsCount(winsCount + 1) : setLossesCount(lossesCount + 1);
+
+        if(!updatingBalance.current) {
+            updatingBalance.current = true;
+
+            const timeout = setTimeout(() => {
+                updatingBalance.current = false;
+
+                api.patch(`/bookies/balance/${username}/`, {balance: currentBalance.current})
+                .catch((err) => alert(err));
+            }, 1000);
+        }
     }
         
     return (
