@@ -3,6 +3,7 @@ import api from '../api';
 
 function BetDetail({ bet }) {
     const [user, setUser] = useState(null);
+    const [balance, setBalance] = useState(null);
     const [amount, setAmount] = useState('');
     const [choice, setChoice] = useState('');
     const [chance, setChance] = useState(0);
@@ -21,6 +22,7 @@ function BetDetail({ bet }) {
             .then((res) => res.data)
             .then((data) => {
                 setUser(data);
+                setBalance(Number(data.balance));
             })
             .catch((err) => alert(err));
         })();
@@ -29,11 +31,10 @@ function BetDetail({ bet }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const amt = Number(Number(amount).toFixed(2));
-        const bal = Number(user.balance);
 
         if (choice === '') setError('choice');
         else if (isNaN(amt)) setError('amount');
-        else if (amt > bal || amt <= 0) setError('bet');
+        else if (amt > balance || amt <= 0) setError('bet');
         else winLose(amt);
     }
     
@@ -47,12 +48,14 @@ function BetDetail({ bet }) {
         
         setWinner(win);
         setWinAmount(profit);
+        setBalance(Number((balance + profit).toFixed(2)));
         setWinTotal((Number(winTotal) + profit).toFixed(2));
         win ? setWinsCount(winsCount + 1) : setLossesCount(lossesCount + 1);
     }
         
     return (
         <div>
+            <p>Balance: {balance && `$${balance}`}</p>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                 <legend><h1>{ bet.bet_text }</h1></legend>

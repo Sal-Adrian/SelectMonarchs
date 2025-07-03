@@ -21,7 +21,6 @@ function Detail() {
 
     return (
         <div>
-            <Navbar />
             {bet && <BetDetail bet={bet} />}
         </div>
     )
