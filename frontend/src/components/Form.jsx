@@ -7,14 +7,12 @@ import '../styles/Form.css'
 function Form({ route, method }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const name = method === "login" ? "Login" : "Register";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
 
         try {
             const res = await api.post(route, { username, password });
@@ -28,32 +26,46 @@ function Form({ route, method }) {
             }
         } catch (error) {
             alert(error);
-        } finally {
-            setLoading(false);
+        }
+    }
+
+    const handleGuest = async () => {
+        try {
+            const res = await api.post(route, { username: "guest", password: "123" });
+            localStorage.setItem(ACCESS_TOKEN, res.data.access);
+            localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+            localStorage.setItem("username", "guest");
+            navigate("/");
+        } catch (error) {
+            alert(error);
         }
     }
 
     return (
-        <form onSubmit={handleSubmit} className='form-container'>
-            <h1>{name}</h1>
-            <input
-                className='form-input'
-                type='text'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder='Username'
-            />
-            <input
-                className='form-input'
-                type='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder='Password'
-            />
-            <button className='form-submit' type='submit'>
-                {name}
-            </button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit} className='form-container'>
+                <h1>{name}</h1>
+                <input
+                    className='form-input'
+                    type='text'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder='Username'
+                />
+                <input
+                    className='form-input'
+                    type='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='Password'
+                />
+                <button className='form-submit' type='submit'>
+                    {name}
+                </button>
+            </form>
+
+            <p>Don't want to make an account? <i style={{cursor: 'pointer'}} onClick={handleGuest}>Continue as guest</i></p>
+        </div>
     )
 }
 
