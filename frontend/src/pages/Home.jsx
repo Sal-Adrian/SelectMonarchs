@@ -9,22 +9,20 @@ function Home() {
     useEffect(() => {
         (async () => {
             await api.get('/bookies/')
-            .then((res) => res.data)
-            .then((data) => {
-                setBets(data);
-            })
-            .catch((err) => alert(err));;
+                .then((res) => res.data)
+                .then((data) => {
+                    setBets(data);
+                })
+                .catch((err) => alert(err));;
         })();
     }, []);
 
     return (
         <div>
             <Navbar />
-            <ul>
-                {bets.map((bet) => (
-                    <Bet key={bet.id} bet={bet} />
-                ))}
-            </ul>
+            {bets.map((bet) => (
+                <Bet key={bet.id} bet={bet} />
+            ))}
         </div>
     )
 }
