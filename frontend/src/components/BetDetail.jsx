@@ -96,7 +96,7 @@ function BetDetail({ bet }) {
                             {bet.choices.map((c) => (
                                 <label
                                     key={c.id}
-                                    className="flex items-center bg-gray-700 rounded px-3 py-2 cursor-pointer hover:bg-green-900 transition"
+                                    className="flex justify-center items-center bg-gray-700 rounded px-3 py-2 cursor-pointer hover:bg-green-900 transition"
                                 >
                                     <input
                                         type="radio"
@@ -147,7 +147,7 @@ function BetDetail({ bet }) {
                             {winner ? 'You Won!' : 'You Lost!'}
                         </span>
                         <p className="text-white text-lg font-semibold">
-                            {winner ? `You won $${winAmount}.` : `You lost $${-winAmount}.`}
+                            {winner ? `You won $${winAmount}` : `You lost $${-winAmount}`}
                         </p>
                     </div>
                 )}
