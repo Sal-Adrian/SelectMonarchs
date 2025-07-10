@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '../api';
+import { useNavigate } from 'react-router-dom';
 
 function BetDetail({ bet }) {
+    const navigate = useNavigate();
+
     const [balance, setBalance] = useState(null);
     const [amount, setAmount] = useState('');
     const [choice, setChoice] = useState('');
@@ -135,7 +138,7 @@ function BetDetail({ bet }) {
                             )}
                         </div>
                     </fieldset>
-                    <button type="submit"className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition shadow-md mt-2">
+                    <button type="submit"className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition shadow-md mt-2 cursor-pointer">
                         Place Bet
                     </button>
                 </form>
@@ -168,8 +171,15 @@ function BetDetail({ bet }) {
                         )}
                     </span>
                 </div>
+
+                {/* Go to Home Page */}
+                <div className="flex justify-center">
+                    <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition shadow-md mt-2 cursor-pointer" onClick={() => navigate('/')}>
+                        Go to Home Page
+                    </button>
+                </div>
             </div>
-            
+
             <style>{`
         @keyframes fade-in-fast { from { opacity: 0; } to { opacity: 1; } }
         .animate-fade-in-fast { animation: fade-in-fast 0.3s ease; }
