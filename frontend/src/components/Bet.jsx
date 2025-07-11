@@ -5,35 +5,35 @@ function Bet({ bet }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className='w-full lg:w-5/6 aspect-square bg-white rounded-lg shadow-md hover:shadow-lg shadow-gray-500 transition-shadow duration-200 cursor-pointer border border-gray-200'>
-            <div
-                className='h-full p-4 flex flex-col justify-between'
-                onClick={() => setIsOpen(!isOpen)}
+        <div className="w-full lg:w-5/6 aspect-square bg-gradient-to-br from-black via-gray-900 to-green-900 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
+            <Link
+                to={`/${bet.id}`}
+                onClick={(e) => e.stopPropagation()}
+                className="h-full bg-gradient-to-r from-green-700 to-green-500 rounded-t-xl flex items-center justify-center text-white text-2xl font-bold mb-4"
             >
-                <div className='flex justify-center'>
-                    <p>Image</p>
-                </div>
-                
-                <div className='text-center'>
-                    <h3 className='font-bold text-lg text-gray-800 mb-2 line-clamp-2'>
+                Banner Image Placeholder
+            </Link>
+            <div className="h-35 px-4 pb-4 flex flex-col justify-between" onClick={() => setIsOpen(!isOpen)}>
+                <div className="text-center">
+                    <h3 className="font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-2">
                         <Link
                             to={`/${bet.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className='hover:text-blue-600 transition-colors'
+                            className="hover:text-green-400 transition-colors"
                         >
                             {bet.bet_text}
                         </Link>
                     </h3>
                 </div>
 
-                <div className='grid grid-cols-2 justify-center'>
+                <div className="grid grid-cols-2 gap-2 justify-center">
                     {bet.choices.map((choice) => (
                         isOpen && (
-                            <div key={choice.id} className='text-center mb-2'>
-                                <p className='text-sm text-gray-600 mb-1'>
+                            <div key={choice.id} className="text-center mb-2">
+                                <p className="text-sm text-gray-300 mb-1 font-medium">
                                     {choice.choice_text}
                                 </p>
-                                <span className='inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded'>
+                                <span className="inline-block bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
                                     {choice.win_condition ?
                                         Math.ceil(bet.win_probability * 100)
                                         : Math.ceil((1 - bet.win_probability) * 100)}%
@@ -42,9 +42,9 @@ function Bet({ bet }) {
                         )))}
                 </div>
 
-                <div className='text-center mt-2'>
-                    <span className='text-xs text-gray-500'>
-                        {isOpen ? 'Click to collapse' : 'Click to see probabilities'}
+                <div className="text-center mt-2">
+                    <span className="text-xs text-gray-400">
+                        {isOpen ? 'Click to Collapse' : 'Click to See Probabilities'}
                     </span>
                 </div>
             </div>

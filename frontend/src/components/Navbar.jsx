@@ -18,7 +18,7 @@ function Navbar() {
     }, []);
 
     return (
-        <nav>
+        <nav className='bg-white'>
             <h1>Navbar</h1>
             {user && (
                 <>

@@ -18,7 +18,7 @@ function Home() {
     }, []);
 
     return (
-        <div className='min-h-screen bg-gray-50'>
+        <div className='min-h-screen bg-gradient-to-r from-indigo-950 via-neutral-950 to-red-950'>
             <Navbar />
             <div className='container px-4 md:px-6 lg:px-12 py-8'>
                 <div className='grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center'>
