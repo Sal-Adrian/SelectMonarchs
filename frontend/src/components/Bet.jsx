@@ -14,6 +14,7 @@ function Bet({ bet }) {
                 Banner Image Placeholder
             </Link>
             <div className="h-35 px-4 pb-4 flex flex-col justify-between" onClick={() => setIsOpen(!isOpen)}>
+                {!isOpen && <div className="h-5"></div>}
                 <div className="text-center">
                     <h3 className="font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-2">
                         <Link
