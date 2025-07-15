@@ -51,8 +51,11 @@ function BetDetail({ bet }) {
 
         setWinner(win);
         setWinAmount(profit);
+
         currentBalance.current = Number((balance + profit).toFixed(2));
+        if (currentBalance.current > 999999999.99) currentBalance.current = 999999999.99;
         setBalance(currentBalance.current);
+
         setWinTotal((Number(winTotal) + profit).toFixed(2));
         win ? setWinsCount(winsCount + 1) : setLossesCount(lossesCount + 1);
         setShowResult(false);

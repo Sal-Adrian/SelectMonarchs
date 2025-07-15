@@ -24,7 +24,9 @@ function Navbar() {
     };
 
     const handleDeposit = () => {
-        const newBalance = (Number(user.balance) + 1000).toFixed(2);
+        let newBalance = (Number(user.balance) + 1000).toFixed(2);
+        if (Number(newBalance) > 999999999.99) newBalance = '999999999.99';
+        
         api.patch(`/bookies/balance/${username}/`, { balance: newBalance }).catch((err) => alert(err));
         setUser({ ...user, balance: newBalance });
     };
