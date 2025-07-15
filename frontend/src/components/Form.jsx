@@ -41,27 +41,38 @@ function Form({ route, method }) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h1>{name}</h1>
-                <input
-                    type='text'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder='Username'
-                />
-                <input
-                    type='password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder='Password'
-                />
-                <button type='submit'>
-                    {name}
-                </button>
-            </form>
-
-            <p>Don't want to make an account? <i style={{cursor: 'pointer'}} onClick={handleGuest}>Continue as guest</i></p>
+        <div className="flex items-center justify-center bg-black">
+            <div className="w-full max-w-md bg-gray-900 rounded-2xl shadow-2xl p-8 border-4 border-green-500">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    <h1 className="text-3xl font-extrabold text-green-500 text-center tracking-wide uppercase font-sans drop-shadow-lg">{name}</h1>
+                    <input
+                        type='text'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder='Username'
+                        className="px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 font-bold text-lg shadow-inner"
+                    />
+                    <input
+                        type='password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder='Password'
+                        className="px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 font-bold text-lg shadow-inner"
+                    />
+                    <button type='submit' className="bg-green-500 hover:bg-green-600 text-black font-extrabold py-3 rounded-lg shadow-lg transition-colors text-lg tracking-wider uppercase cursor-pointer">
+                        {name}
+                    </button>
+                </form>
+                <div className="mt-8 flex flex-col items-center">
+                    <span className="text-white mb-2 font-semibold">Don't want to make an account?</span>
+                    <button
+                        onClick={handleGuest}
+                        className="bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-black font-extrabold py-2 px-6 rounded-lg shadow-lg transition-all text-base tracking-wider uppercase focus:outline-none focus:ring-2 focus:ring-green-500 cursor-pointer"
+                    >
+                        Continue as Guest
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
