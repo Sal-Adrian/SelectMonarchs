@@ -13,23 +13,25 @@ function Bet({ bet }) {
             >
                 Banner Image Placeholder
             </Link>
-            <div className="h-35 px-4 pb-4 flex flex-col justify-between" onClick={() => setIsOpen(!isOpen)}>
-                {!isOpen && <div className="h-5"></div>}
-                <div className="text-center">
-                    <h3 className="font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-2">
-                        <Link
-                            to={`/${bet.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="hover:text-green-400 transition-colors"
-                        >
-                            {bet.bet_text}
-                        </Link>
-                    </h3>
-                </div>
+            <div className="h-35 sm:px-4 pb-4 flex flex-col justify-between" onClick={() => setIsOpen(!isOpen)}>
+                {!isOpen && (
+                    <div className="text-center">
+                        <h3 className="font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-3">
+                            <Link
+                                to={`/${bet.id}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="hover:text-green-400 transition-colors"
+                            >
+                                {bet.bet_text}
+                            </Link>
+                        </h3>
+                    </div>
+                )}
 
-                <div className="grid grid-cols-2 gap-2 justify-center">
-                    {bet.choices.map((choice) => (
-                        isOpen && (
+                {isOpen && (<>
+                    <div></div>
+                    <div className="grid grid-cols-2 gap-2 justify-center">
+                        {bet.choices.map((choice) => (
                             <div key={choice.id} className="text-center mb-2">
                                 <p className="text-sm text-gray-300 mb-1 font-medium">
                                     {choice.choice_text}
@@ -40,8 +42,9 @@ function Bet({ bet }) {
                                         : Math.ceil((1 - bet.win_probability) * 100)}%
                                 </span>
                             </div>
-                        )))}
-                </div>
+                        ))}
+                    </div>
+                </>)}
 
                 <div className="text-center mt-2">
                     <span className="text-xs text-gray-400">
