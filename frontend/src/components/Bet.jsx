@@ -5,22 +5,22 @@ function Bet({ bet }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="w-full lg:w-5/6 aspect-square bg-gradient-to-br from-black via-gray-900 to-green-900 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-200 cursor-pointer">
+        <div className='w-full lg:w-5/6 aspect-square bg-gradient-to-br from-black via-gray-900 to-green-900 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-200 cursor-pointer'>
             <Link
                 to={`/${bet.id}`}
                 onClick={(e) => e.stopPropagation()}
-                className="h-full bg-gradient-to-r from-green-700 to-green-500 rounded-t-xl flex items-center justify-center text-white text-2xl font-bold mb-4"
+                className='h-full bg-gradient-to-r from-green-700 to-green-500 rounded-t-xl flex items-center justify-center text-white text-2xl font-bold mb-4'
             >
                 Banner Image Placeholder
             </Link>
-            <div className="h-35 sm:px-4 pb-4 flex flex-col justify-between" onClick={() => setIsOpen(!isOpen)}>
+            <div className='h-35 sm:px-4 pb-4 flex flex-col justify-between' onClick={() => setIsOpen(!isOpen)}>
                 {!isOpen && (
-                    <div className="text-center">
-                        <h3 className="font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-3">
+                    <div className='text-center'>
+                        <h3 className='font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-3'>
                             <Link
                                 to={`/${bet.id}`}
                                 onClick={(e) => e.stopPropagation()}
-                                className="hover:text-green-400 transition-colors"
+                                className='hover:text-green-400 transition-colors'
                             >
                                 {bet.bet_text}
                             </Link>
@@ -28,15 +28,14 @@ function Bet({ bet }) {
                     </div>
                 )}
 
-                {isOpen && (<>
-                    <div></div>
-                    <div className="grid grid-cols-2 gap-2 justify-center">
+                {isOpen && (
+                    <div className='grid grid-cols-2 gap-2 justify-center'>
                         {bet.choices.map((choice) => (
-                            <div key={choice.id} className="text-center mb-2">
-                                <p className="text-sm text-gray-300 mb-1 font-medium">
+                            <div key={choice.id} className='text-center mb-2'>
+                                <p className='text-sm text-gray-300 mb-1 font-medium'>
                                     {choice.choice_text}
                                 </p>
-                                <span className="inline-block bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                <span className='inline-block bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md'>
                                     {choice.win_condition ?
                                         Math.ceil(bet.win_probability * 100)
                                         : Math.ceil((1 - bet.win_probability) * 100)}%
@@ -44,10 +43,10 @@ function Bet({ bet }) {
                             </div>
                         ))}
                     </div>
-                </>)}
+                )}
 
-                <div className="text-center mt-2">
-                    <span className="text-xs text-gray-400">
+                <div className='text-center mt-2'>
+                    <span className='text-xs text-gray-400'>
                         {isOpen ? 'Click to Collapse' : 'Click to See Probabilities'}
                     </span>
                 </div>
