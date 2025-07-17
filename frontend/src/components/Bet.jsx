@@ -5,7 +5,7 @@ function Bet({ bet }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className='w-full lg:w-5/6 aspect-square bg-gradient-to-br from-black via-gray-900 to-green-900 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-200 cursor-pointer'>
+        <div className='w-full lg:w-5/6 aspect-square bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-200 cursor-pointer'>
             <Link
                 to={`/${bet.id}`}
                 onClick={(e) => e.stopPropagation()}
