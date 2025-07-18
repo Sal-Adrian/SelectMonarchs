@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function Bet({ bet }) {
+function Bet({ bet, banner }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -9,9 +9,9 @@ function Bet({ bet }) {
             <Link
                 to={`/${bet.id}`}
                 onClick={(e) => e.stopPropagation()}
-                className='h-full bg-gradient-to-r from-green-700 to-green-500 rounded-t-xl flex items-center justify-center text-white text-2xl font-bold mb-4'
+                className='h-full flex items-center justify-center text-white text-2xl font-bold mb-4'
             >
-                Banner Image Placeholder
+                <img src={`src/assets/${banner}.jpg`} alt='' className='w-full h-full object-cover rounded-t-xl' />
             </Link>
             <div className='h-35 sm:px-4 pb-4 flex flex-col justify-between' onClick={() => setIsOpen(!isOpen)}>
                 {!isOpen && (
