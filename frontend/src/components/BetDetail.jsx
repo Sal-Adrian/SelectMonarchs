@@ -73,7 +73,7 @@ function BetDetail({ bet, banner }) {
     };
 
     return (
-        <div className='min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-900  p-4'>
+        <div className='min-h-screen bg-gradient-to-r from-indigo-950 via-neutral-950 to-red-950  p-4'>
             <div className='sticky top-0 left-0 z-50 m-2'>
                 <button className='bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition shadow-md mt-2 cursor-pointer' onClick={() => navigate('/')}>
                     Go to Home Page
