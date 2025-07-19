@@ -95,7 +95,7 @@ function BetDetail({ bet, banner }) {
                     </h1>
                     
                     <h3 className='text-green-400 text-center mb-2 font-semibold'>
-                        Your Win Probability: {choice !== '' && Math.ceil(chance * 100) + '%'}
+                        Your Win Probability: {choice !== '' && Math.round(chance * 100) + '%'}
                     </h3>
 
                     {/* Betting Form */}

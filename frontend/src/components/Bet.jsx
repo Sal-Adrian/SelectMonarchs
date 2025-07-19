@@ -37,8 +37,8 @@ function Bet({ bet, banner }) {
                                 </p>
                                 <span className='inline-block bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md'>
                                     {choice.win_condition ?
-                                        Math.ceil(bet.win_probability * 100)
-                                        : Math.ceil((1 - bet.win_probability) * 100)}%
+                                        Math.round(bet.win_probability * 100)
+                                        : Math.round((1 - bet.win_probability) * 100)}%
                                 </span>
                             </div>
                         ))}
