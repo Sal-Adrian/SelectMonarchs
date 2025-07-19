@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 import BetDetail from '../components/BetDetail';
 import { useState, useEffect } from 'react';
 import api from '../api';
@@ -21,7 +21,7 @@ function Detail() {
 
     return (
         <div>
-            {bet && <BetDetail bet={bet} />}
+            {bet && <BetDetail bet={bet} banner={bet.bet_text.toLowerCase().substring(0, bet.bet_text.indexOf(':')).replaceAll(' ', '_')}/>}
         </div>
     )
 }
