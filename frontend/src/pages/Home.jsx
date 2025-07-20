@@ -22,10 +22,11 @@ function Home() {
     return (
         <div className='min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-900'>
             <Navbar />
-            <div className='grid grid-cols-2 bg-gradient-to-b from-gray-950 via-gray-950 to-transparent h-full py-5 justify-items-center'>
+            <div className='grid grid-cols-2 bg-gray-950 h-full justify-items-center p-5'>
                 <img src={banner1} alt='' className='w-9/10 rounded-t-xl flex items-center justify-center  rounded-2xl' />
                 <img src={banner2} alt='' className='w-9/10 rounded-t-xl flex items-center justify-center  rounded-2xl' />
             </div>
+            <div className='h-1 bg-gradient-to-l from-gray-900 via-gray-900 to-gray-950'></div>
 
             <div className='container px-4 md:px-6 lg:px-12 py-8'>
                 <div className='grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center'>
