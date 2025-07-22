@@ -39,7 +39,7 @@ function Bet({ bet, banner }) {
                     <h3 className='font-extrabold text-lg md:text-xl text-white mb-2 line-clamp-3'>{bet.bet_text}</h3>
                 </div>
 
-                <div className='text-center mt-2 z-50'>
+                <div className='text-center mt-2 z-15'>
                     <span className='text-xs text-gray-400'>
                         {isOpen ? 'Click to Collapse' : 'Click to See Probabilities'}
                     </span>

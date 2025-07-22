@@ -35,8 +35,12 @@ function Navbar() {
         <nav className='sticky top-0 z-50 bg-gray-950 p-4'>
             {user && (
                 <div className='flex flex-col md:flex-row justify-between items-center'>
-                    <span className='text-white text-2xl font-extrabold tracking-wide'>
+                    <span className='flex text-white text-2xl font-extrabold tracking-wide'>
                         Select<span className='text-green-500'>Monarchs</span>
+
+                        <a href='https://github.com/Sal-Adrian/SelectMonarchs'>
+                            <img src={`src/assets/${'github-mark-white'}.svg`} className='ml-5 h-9' />
+                        </a>
                     </span>
                     <div className='flex flex-col md:flex-row items-center mt-2 md:mt-0'>
                         <button className='text-white mr-0 md:mr-1 mb-2 md:mb-0 bg-stone-900 hover:bg-green-950 transition-colors duration-200 px-3 py-1 rounded-full border border-green-500 cursor-pointer' onClick={handleDeposit}>
