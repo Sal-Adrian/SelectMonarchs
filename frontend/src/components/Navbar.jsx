@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../api';
+import gitIcon from '../assets/github-mark-white.svg';
 
 function Navbar() {
     const [user, setUser] = useState(null);
@@ -39,7 +40,7 @@ function Navbar() {
                         Select<span className='text-green-500'>Monarchs</span>
 
                         <a href='https://github.com/Sal-Adrian/SelectMonarchs'>
-                            <img src={`src/assets/${'github-mark-white'}.svg`} className='ml-5 h-9' />
+                            <img src={gitIcon} className='ml-5 h-9' />
                         </a>
                     </span>
                     <div className='flex flex-col md:flex-row items-center mt-2 md:mt-0'>

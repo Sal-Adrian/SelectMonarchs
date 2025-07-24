@@ -11,7 +11,7 @@ function Bet({ bet, banner }) {
                 onClick={(e) => e.stopPropagation()}
                 className='h-full flex items-center justify-center text-white text-2xl font-bold group relative'
             >
-                <img src={`src/assets/${banner}.jpg`} alt='' className='w-full h-full object-cover rounded-t-xl' />
+                <img src={`/images/${banner}.jpg`} alt='' className='w-full h-full object-cover rounded-t-xl' />
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-200 flex items-center justify-center rounded-t-xl pointer-events-none">
                     <p className="text-white text-3xl font-extrabold">Place Bet</p>
                 </div>

@@ -82,7 +82,7 @@ function BetDetail({ bet, banner }) {
             <div className='flex items-center justify-center'>
                 <div className='w-full max-w-md aspect-square bg-gray-800 rounded-xl shadow-lg p-6 space-y-6 mb-15'>
                     <div className='h-full rounded-lg flex items-center justify-center mb-4'>
-                        <img src={`src/assets/${banner}.jpg`} alt='' className='w-full h-full object-cover rounded-xl' />
+                        <img src={`/images/${banner}.jpg`} alt='' className='w-full h-full object-cover rounded-xl' />
                     </div>
                     
                     <div className='flex justify-between items-center mb-2'>
