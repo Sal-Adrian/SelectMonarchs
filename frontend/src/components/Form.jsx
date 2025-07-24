@@ -30,7 +30,7 @@ function Form({ route, method }) {
 
     const handleGuest = async () => {
         try {
-            const res = await api.post(route, { username: 'guest', password: '123' });
+            const res = await api.post('/api/token/', { username: 'guest', password: '123' });
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
             localStorage.setItem('username', 'guest');
