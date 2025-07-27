@@ -8,6 +8,9 @@
 
 Like DraftKings, but with extinct sports. [Check it out!](https://sm-frontend-tfu2.onrender.com)
 
+
+**NOTE:** If the website is stuck on a loading page, then you may need to "wake up" the backend before the frontend can load. [Click Here](https://sm-backend-g9dp.onrender.com/), wait till the page says "Not Found", and then try to open [SelectMonarchs](https://sm-frontend-tfu2.onrender.com) again.
+
 ## Features
 
 - Browse extinct sports
