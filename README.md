@@ -1,6 +1,8 @@
-<p style="font-size: 4em; font-weight:800; text-align:center">Select<span style="color:#00c951">Monarchs</span></p>
 
-<p style="text-align:center">At SelectMonarchs, The Kingdom is Yours 👑</p>
+<p align="center"><img width="900" alt="" src="https://github.com/user-attachments/assets/d5bb0a33-57a6-41d8-bd25-82fbd32b50b7" /></p>
+
+<p align="center">At SelectMonarchs, The Kingdom is Yours 👑</p>
+
 
 ---
 
