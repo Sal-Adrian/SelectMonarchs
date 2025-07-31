@@ -44,7 +44,11 @@ function ProtectedRoute({ children }) {
     }
 
     if (isAuthorized === null) {
-        return <div>Loading...</div>
+        return (
+        <div>
+            <p>Loading...</p>
+            <p>If the website is stuck on this page for more than 5 seconds, then you may need to "wake up" the backend before the frontend can load. <a className="text-blue-500 underline" href="https://sm-backend-g9dp.onrender.com/">Click Here</a>, wait till the page says "Not Found", and then try to open <a className="text-blue-500 underline" href="https://sm-frontend-tfu2.onrender.com">SelectMonarchs</a> again.</p>
+        </div>)
     }
 
     return isAuthorized ? children : <Navigate to="/login" />
