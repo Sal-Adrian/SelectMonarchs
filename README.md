@@ -15,14 +15,25 @@ Like DraftKings, but with extinct sports. [Check it out!](https://sm-frontend-tf
 
 - Browse extinct sports
 
+https://github.com/user-attachments/assets/ea3d6385-2c8b-4b47-8c44-cc586dbdd81d
+
+
 ---
 
 - Make bets
+
+https://github.com/user-attachments/assets/b86089b9-03c3-42d3-b37b-bf3681078762
+
 
 ---
 
 - Increase balance
 
+https://github.com/user-attachments/assets/43a14555-d43b-435f-a648-ae67a92d20eb
+
+
 ---
 
 - Make accounts
+
+https://github.com/user-attachments/assets/7b6294be-305d-4fa1-bb16-ae889faa25e3
