@@ -41,7 +41,7 @@ function Form({ route, method }) {
     }
 
     return (
-        <div className='flex items-center justify-center bg-black'>
+        <div className='flex items-center justify-center bg-black mt-8'>
             <div className='w-full max-w-md bg-gray-900 rounded-2xl shadow-2xl p-8 border-4 border-green-500'>
                 <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
                     <h1 className='text-3xl font-extrabold text-green-500 text-center tracking-wide uppercase font-sans drop-shadow-lg'>{name}</h1>
